@@ -27,3 +27,26 @@ html, body {
   font-family: var(--font-inter), system-ui, sans-serif;
   margin: 0;
 }
+
+@layer utilities {
+  .h-hero {
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.15;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  .h-section {
+    font-size: clamp(24px, 2.5vw, 32px);
+    line-height: 1.2;
+    font-weight: 600;
+  }
+  .body-base { font-size: 14px; line-height: 1.55; color: var(--text-primary); }
+  @media (min-width: 768px) { .body-base { font-size: 16px; } }
+  .label-mono {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+}
