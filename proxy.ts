@@ -6,4 +6,6 @@ import { routing } from "./routing";
 // re-export it as the `proxy` named export expected by Next 16.
 export const proxy = createMiddleware(routing);
 
-export const config = { matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"] };
+// Exclude `/studio` (Sanity admin tooling) from the i18n proxy so it is served
+// directly from `app/studio/` without locale rewrites.
+export const config = { matcher: ["/((?!api|_next|_vercel|studio|.*\\..*).*)"] };
