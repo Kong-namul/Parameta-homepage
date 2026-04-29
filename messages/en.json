@@ -1,0 +1,16 @@
+{
+  "nav": {
+    "products": "Products",
+    "solutions": "Solutions",
+    "trust": "Trust",
+    "core": "Core",
+    "resources": "Resources",
+    "ir": "IR",
+    "company": "Company",
+    "signin": "Sign in",
+    "contactSales": "Contact sales"
+  },
+  "hero": {
+    "label": "KOREA · WEB3 · SINCE 2016"
+  }
+}
