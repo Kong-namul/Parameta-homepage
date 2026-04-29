@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 
@@ -62,8 +63,12 @@ export default function SupercyclPage() {
           <h1 className="h-hero font-semibold max-w-3xl">{c.heroTitle}</h1>
           <p className="text-[var(--text-secondary)] mt-6 max-w-2xl text-lg">{c.heroSub}</p>
           <div className="mt-8 flex gap-3">
-            <Button variant="primary">{c.explore}</Button>
-            <Button variant="secondary">{c.contactSales}</Button>
+            <Button variant="primary" asChild>
+              <Link href="/products">{c.explore}</Link>
+            </Button>
+            <Button variant="secondary" asChild>
+              <Link href="/contact">{c.contactSales}</Link>
+            </Button>
           </div>
         </Container>
       </section>
@@ -156,7 +161,9 @@ await supercycl.exchanges.connect("binance", { ... });
 
 // Place trade
 await supercycl.trade({ from: "USDT", to: "ETH", amount: 1000 });`}</code></pre>
-          <Button variant="secondary" className="mt-6">{c.docsCta}</Button>
+          <Button variant="secondary" className="mt-6" asChild>
+            <Link href="/core">{c.docsCta}</Link>
+          </Button>
         </Container>
       </section>
 
@@ -165,8 +172,12 @@ await supercycl.trade({ from: "USDT", to: "ETH", amount: 1000 });`}</code></pre>
         <Container className="text-center max-w-2xl mx-auto">
           <h2 className="h-section">{c.closingTitle}</h2>
           <div className="mt-8 flex justify-center gap-3">
-            <Button variant="primary">{c.talkToSales}</Button>
-            <Button variant="secondary">{c.talkToEngineering}</Button>
+            <Button variant="primary" asChild>
+              <Link href="/contact">{c.talkToSales}</Link>
+            </Button>
+            <Button variant="secondary" asChild>
+              <Link href="/contact">{c.talkToEngineering}</Link>
+            </Button>
           </div>
         </Container>
       </section>

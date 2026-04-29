@@ -63,8 +63,12 @@ export default function ParaStaPage() {
           <h1 className="h-hero font-semibold max-w-3xl">{c.heroTitle}</h1>
           <p className="text-[var(--text-secondary)] mt-6 max-w-2xl">{c.heroSubtitle}</p>
           <div className="mt-8 flex gap-3">
-            <Button variant="primary">{c.exploreModules}</Button>
-            <Button variant="secondary">{c.contactSales}</Button>
+            <Button variant="primary" asChild>
+              <a href="#modules">{c.exploreModules}</a>
+            </Button>
+            <Button variant="secondary" asChild>
+              <Link href="/contact">{c.contactSales}</Link>
+            </Button>
           </div>
         </Container>
       </section>
@@ -87,7 +91,7 @@ export default function ParaStaPage() {
       </section>
 
       {/* 3. 4 Core Modules + Unified Admin */}
-      <section className="py-24 border-b border-[var(--border-subtle)]">
+      <section id="modules" className="py-24 border-b border-[var(--border-subtle)]">
         <Container>
           <div className="label-mono mb-3">PARASTA ARCHITECTURE</div>
           <h2 className="h-section">{c.architectureTitle}</h2>
@@ -174,7 +178,9 @@ export default function ParaStaPage() {
             {c.customersPlaceholder}
           </div>
           <div className="mt-8">
-            <Button variant="primary">{c.talkToSalesQuote}</Button>
+            <Button variant="primary" asChild>
+              <Link href="/contact">{c.talkToSalesQuote}</Link>
+            </Button>
           </div>
         </Container>
       </section>
@@ -184,8 +190,12 @@ export default function ParaStaPage() {
         <Container className="text-center max-w-2xl mx-auto">
           <h2 className="h-section">{c.closingTitle}</h2>
           <div className="mt-8 flex justify-center gap-3">
-            <Button variant="primary">{c.contactSales}</Button>
-            <Button variant="secondary">{c.talkToEngineering}</Button>
+            <Button variant="primary" asChild>
+              <Link href="/contact">{c.contactSales}</Link>
+            </Button>
+            <Button variant="secondary" asChild>
+              <Link href="/contact">{c.talkToEngineering}</Link>
+            </Button>
           </div>
         </Container>
       </section>

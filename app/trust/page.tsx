@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Badge } from "@/components/ui/Badge";
 import { StatBlock } from "@/components/ui/StatBlock";
@@ -88,7 +89,9 @@ export default async function TrustPage() {
         <Container className="text-center max-w-2xl mx-auto">
           <h2 className="h-section">{c.closingTitle}</h2>
           <p className="text-[var(--text-secondary)] mt-4">{c.closingDesc}</p>
-          <Button variant="primary" className="mt-8">{c.closingCta}</Button>
+          <Button variant="primary" className="mt-8" asChild>
+            <Link href="/contact">{c.closingCta}</Link>
+          </Button>
         </Container>
       </section>
     </>

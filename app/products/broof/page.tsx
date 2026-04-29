@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 
@@ -50,7 +51,9 @@ export default function BroofPage() {
             <Button variant="primary" asChild>
               <a href="https://broof.io" target="_blank" rel="noopener noreferrer">{c.visit}</a>
             </Button>
-            <Button variant="secondary">{c.contactIssuer}</Button>
+            <Button variant="secondary" asChild>
+              <Link href="/contact">{c.contactIssuer}</Link>
+            </Button>
           </div>
         </Container>
       </section>
@@ -128,7 +131,9 @@ export default function BroofPage() {
             <Button variant="primary" asChild>
               <a href="https://broof.io" target="_blank" rel="noopener noreferrer">{c.closingPrimary}</a>
             </Button>
-            <Button variant="secondary">{c.contactIssuer}</Button>
+            <Button variant="secondary" asChild>
+              <Link href="/contact">{c.contactIssuer}</Link>
+            </Button>
           </div>
         </Container>
       </section>

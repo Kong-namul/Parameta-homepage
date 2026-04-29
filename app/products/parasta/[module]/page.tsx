@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
@@ -39,8 +40,12 @@ export default async function ModulePage({ params }: { params: Params }) {
           <h1 className="h-hero font-semibold">{m.name}</h1>
           <p className="text-[var(--text-secondary)] mt-6 max-w-2xl text-lg">{m.tagline}</p>
           <div className="mt-8 flex gap-3">
-            <Button variant="primary">{c.trySandbox}</Button>
-            <Button variant="secondary">{c.talkToSales}</Button>
+            <Button variant="primary" asChild>
+              <Link href="/contact">{c.trySandbox}</Link>
+            </Button>
+            <Button variant="secondary" asChild>
+              <Link href="/contact">{c.talkToSales}</Link>
+            </Button>
           </div>
         </Container>
       </section>
@@ -76,7 +81,9 @@ export default async function ModulePage({ params }: { params: Params }) {
           <h2 className="h-section">{c.bmTitle}</h2>
           <p className="text-[var(--text-secondary)] mt-4 max-w-2xl">{c.bmDesc}</p>
           <div className="mt-8">
-            <Button variant="primary">{c.talkToSales}</Button>
+            <Button variant="primary" asChild>
+              <Link href="/contact">{c.talkToSales}</Link>
+            </Button>
           </div>
         </Container>
       </section>
@@ -85,8 +92,12 @@ export default async function ModulePage({ params }: { params: Params }) {
         <Container className="text-center max-w-2xl mx-auto">
           <h2 className="h-section">{c.closingPrefix} {m.name}?</h2>
           <div className="mt-8 flex justify-center gap-3">
-            <Button variant="primary">{c.trySandbox}</Button>
-            <Button variant="secondary">{c.contact}</Button>
+            <Button variant="primary" asChild>
+              <Link href="/contact">{c.trySandbox}</Link>
+            </Button>
+            <Button variant="secondary" asChild>
+              <Link href="/contact">{c.contact}</Link>
+            </Button>
           </div>
         </Container>
       </section>

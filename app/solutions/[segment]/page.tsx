@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
@@ -29,7 +30,9 @@ export default async function SolutionPage({ params }: { params: Params }) {
           <div className="label-mono mb-4">{c.label}</div>
           <h1 className="h-hero font-semibold">{s.name}</h1>
           <p className="text-[var(--text-secondary)] mt-6 max-w-2xl text-lg">{s.audience}</p>
-          <Button variant="primary" className="mt-8">{c.talkToSales}</Button>
+          <Button variant="primary" className="mt-8" asChild>
+            <Link href="/contact">{c.talkToSales}</Link>
+          </Button>
         </Container>
       </section>
       <section className="py-24 border-b border-[var(--border-subtle)]">
@@ -61,7 +64,9 @@ export default async function SolutionPage({ params }: { params: Params }) {
       <section className="py-24">
         <Container className="text-center max-w-2xl mx-auto">
           <h2 className="h-section">{c.closingPrefix} {s.name}?</h2>
-          <Button variant="primary" className="mt-8">{c.talkToSales}</Button>
+          <Button variant="primary" className="mt-8" asChild>
+            <Link href="/contact">{c.talkToSales}</Link>
+          </Button>
         </Container>
       </section>
     </>

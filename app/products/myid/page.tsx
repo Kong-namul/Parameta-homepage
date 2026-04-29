@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
@@ -55,8 +56,12 @@ export default function MyIdPage() {
           <h1 className="h-hero font-semibold max-w-3xl">{c.heroTitle}</h1>
           <p className="text-[var(--text-secondary)] mt-6 max-w-2xl text-lg">{c.heroSub}</p>
           <div className="mt-8 flex gap-3">
-            <Button variant="primary">{c.publicCta}</Button>
-            <Button variant="secondary">{c.learnMore}</Button>
+            <Button variant="primary" asChild>
+              <Link href="/contact">{c.publicCta}</Link>
+            </Button>
+            <Button variant="secondary" asChild>
+              <a href="#how-it-works">{c.learnMore}</a>
+            </Button>
           </div>
         </Container>
       </section>
@@ -123,7 +128,9 @@ export default function MyIdPage() {
           <h2 className="h-section">{c.subscriptionTitle}</h2>
           <p className="text-[var(--text-secondary)] mt-4 max-w-2xl">{c.subscriptionDesc}</p>
           <div className="mt-8">
-            <Button variant="primary">{c.quoteCta}</Button>
+            <Button variant="primary" asChild>
+              <Link href="/contact">{c.quoteCta}</Link>
+            </Button>
           </div>
         </Container>
       </section>
@@ -139,7 +146,9 @@ const did = await myid.issue({ subject: "user@org.kr", level: 2 });
 
 // Verify reuse (KYW)
 const valid = await myid.verify(did, { service: "battery-passport" });`}</code></pre>
-          <Button variant="secondary" className="mt-6">{c.docsCta}</Button>
+          <Button variant="secondary" className="mt-6" asChild>
+            <Link href="/core">{c.docsCta}</Link>
+          </Button>
         </Container>
       </section>
 
@@ -149,7 +158,9 @@ const valid = await myid.verify(did, { service: "battery-passport" });`}</code><
           <h2 className="h-section">{c.closingTitle}</h2>
           <p className="text-[var(--text-secondary)] mt-4">{c.closingDesc}</p>
           <div className="mt-8 flex justify-center gap-3">
-            <Button variant="primary">{c.primary}</Button>
+            <Button variant="primary" asChild>
+              <Link href="/contact">{c.primary}</Link>
+            </Button>
             <Button variant="secondary" asChild>
               <a href="mailto:public@parametacorp.com">public@parametacorp.com</a>
             </Button>
