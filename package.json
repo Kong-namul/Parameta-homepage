@@ -6,9 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "vitest",
+    "test:run": "vitest run"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
     "@sanity/client": "^7.22.0",
     "@sanity/image-url": "^2.1.1",
     "clsx": "^2.1.1",
@@ -33,7 +36,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@vitejs/plugin-react": "^6.0.1",
+    "@vitejs/plugin-react": "^5.2.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
     "jsdom": "^29.1.0",
