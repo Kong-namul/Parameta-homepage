@@ -12,24 +12,17 @@ interface CaseDoc {
   year?: number;
 }
 
-const FILTER_LABEL = {
-  ko: { all: "전체", financial: "금융", public: "공공", enterprise: "기업" },
-  en: { all: "All", financial: "Financial", public: "Public", enterprise: "Enterprise" },
-} as const;
+const FILTER_LABEL = { all: "전체", financial: "금융", public: "공공", enterprise: "기업" } as const;
 
-const EMPTY = {
-  ko: "케이스 스터디 — Sanity Studio 콘텐츠 등록 후 표시",
-  en: "Case studies — displayed once content is added in Sanity Studio.",
-};
+const EMPTY = "케이스 스터디 — Sanity Studio 콘텐츠 등록 후 표시";
 
-export function CaseStudiesGrid({ cases, locale }: { cases: CaseDoc[]; locale: string }) {
+export function CaseStudiesGrid({ cases }: { cases: CaseDoc[] }) {
   const [industry, setIndustry] = useState<string>("all");
   const filtered = industry === "all" ? cases : cases.filter((c) => c.industry === industry);
-  const labels = locale === "en" ? FILTER_LABEL.en : FILTER_LABEL.ko;
   if (cases.length === 0) {
     return (
       <div className="p-8 border border-[var(--border)] rounded-md text-center text-[var(--text-tertiary)] text-sm">
-        {locale === "en" ? EMPTY.en : EMPTY.ko}
+        {EMPTY}
       </div>
     );
   }
@@ -46,7 +39,7 @@ export function CaseStudiesGrid({ cases, locale }: { cases: CaseDoc[]; locale: s
                 : "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--text-secondary)]"
             }`}
           >
-            {labels[i]}
+            {FILTER_LABEL[i]}
           </button>
         ))}
       </div>
@@ -56,7 +49,7 @@ export function CaseStudiesGrid({ cases, locale }: { cases: CaseDoc[]; locale: s
             <span className="label-mono">{c.industry}{c.year ? ` · ${c.year}` : ""}</span>
             <h3 className="font-semibold mt-3">{c.client_name}</h3>
             <p className="text-sm text-[var(--text-secondary)] mt-2 line-clamp-3">
-              {locale === "en" ? c.summary_en : c.summary_ko}
+              {c.summary_ko}
             </p>
           </Card>
         ))}

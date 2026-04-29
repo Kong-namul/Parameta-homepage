@@ -1,92 +1,50 @@
 "use client";
 import { useState, FormEvent } from "react";
-import { useLocale } from "next-intl";
 import { Button } from "@/components/ui/Button";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
 const COPY = {
-  ko: {
-    name: "이름 *",
-    nameAria: "이름",
-    company: "회사명 *",
-    companyAria: "회사명",
-    title: "직책 (선택)",
-    titleAria: "직책",
-    email: "비즈니스 이메일 *",
-    emailAria: "이메일",
-    phone: "전화번호 (선택)",
-    phoneAria: "전화번호",
-    segment: "고객군",
-    segmentPlaceholder: "고객군 *",
-    segmentOpts: [
-      { value: "financial", label: "금융사" },
-      { value: "enterprise", label: "기업" },
-      { value: "public", label: "지자체·공공" },
-      { value: "other", label: "기타" },
-    ],
-    interest: "관심 영역",
-    interestPlaceholder: "관심 영역 *",
-    interestOpts: [
-      { value: "parasta", label: "ParaSta" },
-      { value: "supercycl", label: "Supercycl" },
-      { value: "myid", label: "MyID 2.0" },
-      { value: "broof", label: "broof" },
-      { value: "general", label: "일반 문의" },
-    ],
-    message: "메시지 * (500자 이내)",
-    messageAria: "메시지",
-    consent: "개인정보 처리에 동의합니다.",
-    consentLink: "방침 보기",
-    submit: "문의 보내기",
-    submitting: "전송 중...",
-    success: "접수되었습니다. 영업일 3일 내 회신드릴게요.",
-    networkError: "네트워크 오류. 잠시 후 다시 시도해주세요.",
-    fallbackError: "전송 실패. 잠시 후 다시 시도해주세요.",
-  },
-  en: {
-    name: "Name *",
-    nameAria: "Name",
-    company: "Company *",
-    companyAria: "Company",
-    title: "Title (optional)",
-    titleAria: "Title",
-    email: "Business email *",
-    emailAria: "Email",
-    phone: "Phone (optional)",
-    phoneAria: "Phone",
-    segment: "Audience",
-    segmentPlaceholder: "Audience *",
-    segmentOpts: [
-      { value: "financial", label: "Financial" },
-      { value: "enterprise", label: "Enterprise" },
-      { value: "public", label: "Public sector" },
-      { value: "other", label: "Other" },
-    ],
-    interest: "Interest",
-    interestPlaceholder: "Interest *",
-    interestOpts: [
-      { value: "parasta", label: "ParaSta" },
-      { value: "supercycl", label: "Supercycl" },
-      { value: "myid", label: "MyID 2.0" },
-      { value: "broof", label: "broof" },
-      { value: "general", label: "General" },
-    ],
-    message: "Message * (max 500 chars)",
-    messageAria: "Message",
-    consent: "I consent to the processing of personal information.",
-    consentLink: "View policy",
-    submit: "Send inquiry",
-    submitting: "Sending…",
-    success: "Received. We will reply within three business days.",
-    networkError: "Network error. Please try again shortly.",
-    fallbackError: "Submission failed. Please try again shortly.",
-  },
+  name: "이름 *",
+  nameAria: "이름",
+  company: "회사명 *",
+  companyAria: "회사명",
+  title: "직책 (선택)",
+  titleAria: "직책",
+  email: "비즈니스 이메일 *",
+  emailAria: "이메일",
+  phone: "전화번호 (선택)",
+  phoneAria: "전화번호",
+  segment: "고객군",
+  segmentPlaceholder: "고객군 *",
+  segmentOpts: [
+    { value: "financial", label: "금융사" },
+    { value: "enterprise", label: "기업" },
+    { value: "public", label: "지자체·공공" },
+    { value: "other", label: "기타" },
+  ],
+  interest: "관심 영역",
+  interestPlaceholder: "관심 영역 *",
+  interestOpts: [
+    { value: "parasta", label: "ParaSta" },
+    { value: "supercycl", label: "Supercycl" },
+    { value: "myid", label: "MyID 2.0" },
+    { value: "broof", label: "broof" },
+    { value: "general", label: "일반 문의" },
+  ],
+  message: "메시지 * (500자 이내)",
+  messageAria: "메시지",
+  consent: "개인정보 처리에 동의합니다.",
+  consentLink: "방침 보기",
+  submit: "문의 보내기",
+  submitting: "전송 중...",
+  success: "접수되었습니다. 영업일 3일 내 회신드릴게요.",
+  networkError: "네트워크 오류. 잠시 후 다시 시도해주세요.",
+  fallbackError: "전송 실패. 잠시 후 다시 시도해주세요.",
 } as const;
 
 export function ContactForm() {
-  const locale = useLocale();
-  const c = locale === "en" ? COPY.en : COPY.ko;
+  const c = COPY;
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
 

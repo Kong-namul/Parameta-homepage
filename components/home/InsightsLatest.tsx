@@ -12,7 +12,7 @@ interface InsightDoc {
   summary_en?: string;
 }
 
-export async function InsightsLatest({ locale }: { locale: string }) {
+export async function InsightsLatest() {
   let insights: InsightDoc[] = [];
   try {
     insights = await sanity.fetch(INSIGHTS_LATEST);
@@ -28,13 +28,11 @@ export async function InsightsLatest({ locale }: { locale: string }) {
         <h2 className="h-section">Insights & Newsroom</h2>
         <div className="grid md:grid-cols-3 gap-4 mt-12">
           {insights.map((i) => (
-            <Link key={i._id} href={`/resources/insights/${i._id}`}>
+            <Link key={i._id} href={`/company/insights/${i._id}`}>
               <Card variant="elevated">
-                <h3 className="font-semibold">
-                  {locale === "en" ? i.title_en || i.title_ko : i.title_ko}
-                </h3>
+                <h3 className="font-semibold">{i.title_ko}</h3>
                 <p className="text-sm text-[var(--text-secondary)] mt-3 line-clamp-2">
-                  {locale === "en" ? i.summary_en : i.summary_ko}
+                  {i.summary_ko}
                 </p>
               </Card>
             </Link>

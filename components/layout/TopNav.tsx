@@ -1,19 +1,15 @@
 import Link from "next/link";
-import { useTranslations } from "next-intl";
 import { Container } from "./Container";
-import { LocaleToggle } from "./LocaleToggle";
 import { Button } from "@/components/ui/Button";
 
 export function TopNav() {
-  const t = useTranslations("nav");
   const items = [
-    { href: "/products", label: t("products") },
-    { href: "/solutions", label: t("solutions") },
-    { href: "/trust", label: t("trust") },
-    { href: "/core", label: t("core") },
-    { href: "/resources", label: t("resources") },
-    { href: "/ir", label: t("ir") },
-    { href: "/company", label: t("company") },
+    { href: "/products", label: "Products" },
+    { href: "/solutions", label: "Solutions" },
+    { href: "/trust", label: "Trust" },
+    { href: "/core", label: "Core" },
+    { href: "/ir", label: "IR" },
+    { href: "/company", label: "Company" },
   ];
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--border-subtle)] bg-[var(--bg-base)]/80 backdrop-blur">
@@ -33,15 +29,14 @@ export function TopNav() {
           ))}
         </nav>
         <div className="flex items-center gap-4">
-          <LocaleToggle />
           <Link
             href="/signin"
             className="text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
           >
-            {t("signin")}
+            로그인
           </Link>
           <Button variant="primary" size="sm" asChild>
-            <Link href="/contact">{t("contactSales")}</Link>
+            <Link href="/contact">무료 컨설팅</Link>
           </Button>
         </div>
       </Container>

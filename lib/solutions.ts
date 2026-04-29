@@ -6,7 +6,7 @@ type SolutionContent = {
   note: string;
 };
 
-const ko = {
+const data = {
   financial: {
     name: "Financial",
     audience: "증권·은행·결제사·STO 발행자",
@@ -30,37 +30,6 @@ const ko = {
   },
 } as const satisfies Record<string, SolutionContent>;
 
-const en = {
-  financial: {
-    name: "Financial",
-    audience: "Brokerages, banks, payments providers, STO issuers",
-    models: [
-      "Mirae Asset-style portfolio operation",
-      "Real estate STO security tokens (trust)",
-    ],
-    products_used: ["ParaSta Wallet", "Onchain KYC", "Orchestration", "Supercycl"],
-    note: "All STO, securities, and payments scenarios route here",
-  },
-  public: {
-    name: "Public",
-    audience: "Local governments and public agencies",
-    models: ["Inscobee-style local-currency stablecoin", "Busan City battery passport"],
-    products_used: ["MyID 2.0", "ParaSta Issuance", "broof (public certificates)"],
-    note: "Built to public procurement standards (CSAP, listed on Digital Marketplace)",
-  },
-  enterprise: {
-    name: "Enterprise",
-    audience: "General enterprises, in-app commerce, B2B SaaS",
-    models: ["In-app commerce unified asset wallet (linked to Showcase Demo)"],
-    products_used: ["All four ParaSta modules"],
-    note: "For enterprises adding their own token, wallet, payments, and FX to their app — not STO",
-  },
-} as const satisfies Record<string, SolutionContent>;
+export const solutions = data;
 
-export const solutions = ko;
-
-export function getSolutions(locale: string): Record<keyof typeof ko, SolutionContent> {
-  return locale === "en" ? en : ko;
-}
-
-export type SolutionKey = keyof typeof ko;
+export type SolutionKey = keyof typeof data;

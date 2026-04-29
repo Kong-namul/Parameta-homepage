@@ -1,6 +1,6 @@
 type ModuleContent = { name: string; tagline: string; features: readonly string[] };
 
-const ko = {
+const modules = {
   issuance: {
     name: "Issuance",
     tagline: "기업 고유 브랜드의 스테이블코인을 즉시 발행하고 운영합니다.",
@@ -58,68 +58,6 @@ const ko = {
   },
 } as const satisfies Record<string, ModuleContent>;
 
-const en = {
-  issuance: {
-    name: "Issuance",
-    tagline: "Issue and operate stablecoins under your own brand, instantly.",
-    features: [
-      "Issuance request and approval workflow",
-      "1:1 reserve monitoring",
-      "Mint, burn, and policy-limit controls",
-      "End-to-end token lifecycle management",
-      "B2B security and audit logs",
-    ],
-  },
-  wallet: {
-    name: "Wallet",
-    tagline: "Infrastructure for building digital asset wallet features with ease.",
-    features: [
-      "Key management and gas abstraction",
-      "Account Abstraction Smart Wallet",
-      "Stealth Address privacy",
-      "Operator console and dashboard",
-      "Per-account and aggregated balance reporting",
-    ],
-  },
-  orchestration: {
-    name: "Orchestration",
-    tagline: "Middleware bridging banking rails (fiat) and blockchain (crypto).",
-    features: [
-      "Fiat rail (banking) integration",
-      "Quote, execution, and hedging",
-      "Multi-chain crypto routing",
-      "Settlement and ledger management",
-      "Cost, speed, and liquidity optimization",
-    ],
-  },
-  "onchain-kyc": {
-    name: "Onchain KYC",
-    tagline: "Verify Once, Use Everywhere — next-generation identity.",
-    features: [
-      "Identity verification (KYC)",
-      "On-chain credential issuance (VC)",
-      "Reuse, renewal, and revocation",
-      "Selective Disclosure (ZK option)",
-      "AML screening and risk scoring",
-    ],
-  },
-  "unified-admin": {
-    name: "Unified Admin",
-    tagline: "A unified operations console connecting all four modules.",
-    features: [
-      "Token Lifecycle Ops (Mint/Burn/Reserve/Yield)",
-      "Financial & Settlement Ops (Unified Ledger)",
-      "Compliance & Risk Control (Policy Engine)",
-      "Analytics Dashboard (TVL/Customer 360)",
-      "Audit logs and access control",
-    ],
-  },
-} as const satisfies Record<string, ModuleContent>;
+export const parastaModules = modules;
 
-export const parastaModules = ko;
-
-export function getParastaModules(locale: string): Record<keyof typeof ko, ModuleContent> {
-  return locale === "en" ? en : ko;
-}
-
-export type ParaStaModuleKey = keyof typeof ko;
+export type ParaStaModuleKey = keyof typeof modules;

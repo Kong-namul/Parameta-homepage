@@ -12,18 +12,12 @@ interface TimelineDoc {
 }
 
 const COPY = {
-  ko: {
-    placeholder: "9년 타임라인 — Sanity Studio 콘텐츠 등록 후 표시 (Phase 11)",
-    empty: "타임라인 마일스톤이 아직 등록되지 않았습니다.",
-  },
-  en: {
-    placeholder: "Nine-year timeline — populated once content is added in Sanity Studio (Phase 11).",
-    empty: "Timeline milestones haven't been added yet.",
-  },
+  placeholder: "9년 타임라인 — Sanity Studio 콘텐츠 등록 후 표시 (Phase 11)",
+  empty: "타임라인 마일스톤이 아직 등록되지 않았습니다.",
 };
 
-export async function Timeline({ locale }: { locale: string }) {
-  const c = locale === "en" ? COPY.en : COPY.ko;
+export async function Timeline() {
+  const c = COPY;
   let items: TimelineDoc[] = [];
   try {
     items = await sanity.fetch(TIMELINE_ALL);
@@ -55,11 +49,9 @@ export async function Timeline({ locale }: { locale: string }) {
           <ul className="space-y-2">
             {byYear[y].map((it) => (
               <li key={it._id} className="text-sm text-[var(--text-secondary)]">
-                <strong className="text-[var(--text-primary)]">
-                  {locale === "en" ? it.title_en || it.title_ko : it.title_ko}
-                </strong>
-                {(locale === "en" ? it.description_en : it.description_ko) && (
-                  <span className="ml-2">— {locale === "en" ? it.description_en : it.description_ko}</span>
+                <strong className="text-[var(--text-primary)]">{it.title_ko}</strong>
+                {it.description_ko && (
+                  <span className="ml-2">— {it.description_ko}</span>
                 )}
               </li>
             ))}

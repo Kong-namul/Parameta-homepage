@@ -1,23 +1,14 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { NextIntlClientProvider } from "next-intl";
 import { ContactForm } from "./ContactForm";
 
 beforeEach(() => {
   global.fetch = vi.fn();
 });
 
-function renderWithIntl(locale: "ko" | "en" = "ko") {
-  return render(
-    <NextIntlClientProvider locale={locale} messages={{}}>
-      <ContactForm />
-    </NextIntlClientProvider>
-  );
-}
-
 describe("ContactForm", () => {
   it("renders all required fields", () => {
-    renderWithIntl();
+    render(<ContactForm />);
     expect(screen.getByPlaceholderText("이름 *")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("회사명 *")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("비즈니스 이메일 *")).toBeInTheDocument();
@@ -29,7 +20,7 @@ describe("ContactForm", () => {
   it("shows success message on successful submit", async () => {
     // @ts-expect-error mock
     global.fetch.mockResolvedValueOnce({ ok: true, json: async () => ({ ok: true }) });
-    renderWithIntl();
+    render(<ContactForm />);
     // Fill required fields and submit
     fireEvent.change(screen.getByPlaceholderText("이름 *"), { target: { value: "Test" } });
     fireEvent.change(screen.getByPlaceholderText("회사명 *"), { target: { value: "Acme" } });
@@ -48,7 +39,7 @@ describe("ContactForm", () => {
   it("shows error message on failed submit", async () => {
     // @ts-expect-error mock
     global.fetch.mockResolvedValueOnce({ ok: false, json: async () => ({ error: "Server error" }) });
-    renderWithIntl();
+    render(<ContactForm />);
     fireEvent.change(screen.getByPlaceholderText("이름 *"), { target: { value: "Test" } });
     fireEvent.change(screen.getByPlaceholderText("회사명 *"), { target: { value: "Acme" } });
     fireEvent.change(screen.getByPlaceholderText("비즈니스 이메일 *"), { target: { value: "test@acme.com" } });

@@ -6,11 +6,18 @@
     { "source": "/tech", "destination": "/products/parasta", "permanent": true },
     { "source": "/product", "destination": "/products/parasta", "permanent": true },
     { "source": "/product/:slug", "destination": "/products/parasta", "permanent": true },
-    { "source": "/learn", "destination": "/resources/insights", "permanent": true },
-    { "source": "/learn/:slug", "destination": "/resources/insights", "permanent": true },
-    { "source": "/news", "destination": "/resources/newsroom", "permanent": true },
-    { "source": "/news/:slug", "destination": "/resources/newsroom", "permanent": true },
+    { "source": "/learn", "destination": "/company/insights", "permanent": true },
+    { "source": "/learn/:slug", "destination": "/company/insights", "permanent": true },
+    { "source": "/news", "destination": "/company/newsroom", "permanent": true },
+    { "source": "/news/:slug", "destination": "/company/newsroom", "permanent": true },
     { "source": "/career", "destination": "/company/careers", "permanent": true },
-    { "source": "/contact-us", "destination": "/contact", "permanent": true }
+    { "source": "/contact-us", "destination": "/contact", "permanent": true },
+    { "source": "/resources", "destination": "/company", "permanent": true },
+    { "source": "/resources/insights", "destination": "/company/insights", "permanent": true },
+    { "source": "/resources/insights/:id", "destination": "/company/insights/:id", "permanent": true },
+    { "source": "/resources/newsroom", "destination": "/company/newsroom", "permanent": true },
+    { "source": "/resources/newsroom/:id", "destination": "/company/newsroom/:id", "permanent": true },
+    { "source": "/resources/docs", "destination": "/core", "permanent": true },
+    { "source": "/resources/docs/:slug", "destination": "/docs/:slug", "permanent": false }
   ]
 }
