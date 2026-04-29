@@ -1,10 +1,92 @@
 "use client";
 import { useState, FormEvent } from "react";
+import { useLocale } from "next-intl";
 import { Button } from "@/components/ui/Button";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
+const COPY = {
+  ko: {
+    name: "이름 *",
+    nameAria: "이름",
+    company: "회사명 *",
+    companyAria: "회사명",
+    title: "직책 (선택)",
+    titleAria: "직책",
+    email: "비즈니스 이메일 *",
+    emailAria: "이메일",
+    phone: "전화번호 (선택)",
+    phoneAria: "전화번호",
+    segment: "고객군",
+    segmentPlaceholder: "고객군 *",
+    segmentOpts: [
+      { value: "financial", label: "금융사" },
+      { value: "enterprise", label: "기업" },
+      { value: "public", label: "지자체·공공" },
+      { value: "other", label: "기타" },
+    ],
+    interest: "관심 영역",
+    interestPlaceholder: "관심 영역 *",
+    interestOpts: [
+      { value: "parasta", label: "ParaSta" },
+      { value: "supercycl", label: "Supercycl" },
+      { value: "myid", label: "MyID 2.0" },
+      { value: "broof", label: "broof" },
+      { value: "general", label: "일반 문의" },
+    ],
+    message: "메시지 * (500자 이내)",
+    messageAria: "메시지",
+    consent: "개인정보 처리에 동의합니다.",
+    consentLink: "방침 보기",
+    submit: "문의 보내기",
+    submitting: "전송 중...",
+    success: "접수되었습니다. 영업일 3일 내 회신드릴게요.",
+    networkError: "네트워크 오류. 잠시 후 다시 시도해주세요.",
+    fallbackError: "전송 실패. 잠시 후 다시 시도해주세요.",
+  },
+  en: {
+    name: "Name *",
+    nameAria: "Name",
+    company: "Company *",
+    companyAria: "Company",
+    title: "Title (optional)",
+    titleAria: "Title",
+    email: "Business email *",
+    emailAria: "Email",
+    phone: "Phone (optional)",
+    phoneAria: "Phone",
+    segment: "Audience",
+    segmentPlaceholder: "Audience *",
+    segmentOpts: [
+      { value: "financial", label: "Financial" },
+      { value: "enterprise", label: "Enterprise" },
+      { value: "public", label: "Public sector" },
+      { value: "other", label: "Other" },
+    ],
+    interest: "Interest",
+    interestPlaceholder: "Interest *",
+    interestOpts: [
+      { value: "parasta", label: "ParaSta" },
+      { value: "supercycl", label: "Supercycl" },
+      { value: "myid", label: "MyID 2.0" },
+      { value: "broof", label: "broof" },
+      { value: "general", label: "General" },
+    ],
+    message: "Message * (max 500 chars)",
+    messageAria: "Message",
+    consent: "I consent to the processing of personal information.",
+    consentLink: "View policy",
+    submit: "Send inquiry",
+    submitting: "Sending…",
+    success: "Received. We will reply within three business days.",
+    networkError: "Network error. Please try again shortly.",
+    fallbackError: "Submission failed. Please try again shortly.",
+  },
+} as const;
+
 export function ContactForm() {
+  const locale = useLocale();
+  const c = locale === "en" ? COPY.en : COPY.ko;
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
@@ -23,14 +105,14 @@ export function ContactForm() {
       });
       if (!res.ok) {
         const err = await res.json().catch(() => ({}));
-        setErrorMessage(err?.error || "전송 실패. 잠시 후 다시 시도해주세요.");
+        setErrorMessage(err?.error || c.fallbackError);
         setStatus("error");
         return;
       }
       setStatus("success");
       form.reset();
     } catch {
-      setErrorMessage("네트워크 오류. 잠시 후 다시 시도해주세요.");
+      setErrorMessage(c.networkError);
       setStatus("error");
     }
   }
@@ -41,47 +123,44 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4 max-w-xl" noValidate>
       <div className="grid md:grid-cols-2 gap-4">
-        <input name="name" placeholder="이름 *" required className={inputCls} aria-label="이름" />
-        <input name="company" placeholder="회사명 *" required className={inputCls} aria-label="회사명" />
+        <input name="name" placeholder={c.name} required className={inputCls} aria-label={c.nameAria} />
+        <input name="company" placeholder={c.company} required className={inputCls} aria-label={c.companyAria} />
       </div>
-      <input name="title" placeholder="직책 (선택)" className={inputCls} aria-label="직책" />
-      <input name="email" type="email" placeholder="비즈니스 이메일 *" required className={inputCls} aria-label="이메일" />
-      <input name="phone" type="tel" placeholder="전화번호 (선택)" className={inputCls} aria-label="전화번호" />
-      <select name="segment" required defaultValue="" className={inputCls} aria-label="고객군">
-        <option value="" disabled>고객군 *</option>
-        <option value="financial">금융사</option>
-        <option value="enterprise">기업</option>
-        <option value="public">지자체·공공</option>
-        <option value="other">기타</option>
+      <input name="title" placeholder={c.title} className={inputCls} aria-label={c.titleAria} />
+      <input name="email" type="email" placeholder={c.email} required className={inputCls} aria-label={c.emailAria} />
+      <input name="phone" type="tel" placeholder={c.phone} className={inputCls} aria-label={c.phoneAria} />
+      <select name="segment" required defaultValue="" className={inputCls} aria-label={c.segment}>
+        <option value="" disabled>{c.segmentPlaceholder}</option>
+        {c.segmentOpts.map((o) => (
+          <option key={o.value} value={o.value}>{o.label}</option>
+        ))}
       </select>
-      <select name="interest" required defaultValue="" className={inputCls} aria-label="관심 영역">
-        <option value="" disabled>관심 영역 *</option>
-        <option value="parasta">ParaSta</option>
-        <option value="supercycl">Supercycl</option>
-        <option value="myid">MyID 2.0</option>
-        <option value="broof">broof</option>
-        <option value="general">일반 문의</option>
+      <select name="interest" required defaultValue="" className={inputCls} aria-label={c.interest}>
+        <option value="" disabled>{c.interestPlaceholder}</option>
+        {c.interestOpts.map((o) => (
+          <option key={o.value} value={o.value}>{o.label}</option>
+        ))}
       </select>
       <textarea
         name="message"
-        placeholder="메시지 * (500자 이내)"
+        placeholder={c.message}
         maxLength={500}
         required
         rows={5}
         className={inputCls}
-        aria-label="메시지"
+        aria-label={c.messageAria}
       />
       <label className="flex items-start gap-2 text-sm text-[var(--text-secondary)]">
         <input type="checkbox" name="consent" required className="mt-1" />
         <span>
-          개인정보 처리에 동의합니다. <a href="/privacy" className="text-[var(--accent-primary)] underline">방침 보기</a>
+          {c.consent} <a href="/privacy" className="text-[var(--accent-primary)] underline">{c.consentLink}</a>
         </span>
       </label>
       <Button variant="primary" type="submit" disabled={status === "submitting"}>
-        {status === "submitting" ? "전송 중..." : "문의 보내기"}
+        {status === "submitting" ? c.submitting : c.submit}
       </Button>
       {status === "success" && (
-        <p className="text-sm text-green-400" role="status">접수되었습니다. 영업일 3일 내 회신드릴게요.</p>
+        <p className="text-sm text-green-400" role="status">{c.success}</p>
       )}
       {status === "error" && (
         <p className="text-sm text-red-400" role="alert">{errorMessage}</p>
