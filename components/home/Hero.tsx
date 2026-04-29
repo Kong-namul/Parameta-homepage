@@ -1,6 +1,7 @@
 "use client";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
+import { useLocale } from "next-intl";
 import gsap from "gsap";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
@@ -8,6 +9,8 @@ import { Badge } from "@/components/ui/Badge";
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
+  const locale = useLocale();
+  const isEn = locale === "en";
 
   useGSAP(
     () => {
@@ -26,7 +29,37 @@ export function Hero() {
           0.3
         );
     },
-    { scope: ref }
+    { scope: ref, dependencies: [locale] }
+  );
+
+  // KO mode: 한글 메인 (3 phrase) + 영문 sub
+  // EN mode: 영문 메인 (3 phrase) + 한글 sub
+  const koPhrases = (
+    <>
+      <span className="hero-phrase block">공공·금융이 먼저 부르는</span>
+      <span className="hero-phrase block">
+        한국 <span className="bg-[var(--accent-primary-soft)] px-2 text-[var(--accent-primary)]">1세대</span>
+      </span>
+      <span className="hero-phrase block">Web3 인프라.</span>
+    </>
+  );
+
+  const enPhrases = (
+    <>
+      <span className="hero-phrase block">Korea&apos;s</span>
+      <span className="hero-phrase block">
+        <span className="bg-[var(--accent-primary-soft)] px-2 text-[var(--accent-primary)]">first-generation</span> Web3
+      </span>
+      <span className="hero-phrase block">infrastructure.</span>
+    </>
+  );
+
+  const koSub = "공공·금융이 먼저 부르는 한국 1세대 Web3 인프라.";
+  const enSub = (
+    <>
+      Called first by public sector and finance.<br />
+      Korea&apos;s first-generation Web3 infrastructure since 2016.
+    </>
   );
 
   return (
@@ -34,20 +67,13 @@ export function Hero() {
       <Container className="grid md:grid-cols-2 gap-12 items-center">
         <div>
           <div className="label-mono hero-label mb-6">KOREA · WEB3 · SINCE 2016</div>
-          <h1 className="h-hero font-semibold tracking-tight">
-            <span className="hero-phrase block">공공·금융이 먼저 부르는</span>
-            <span className="hero-phrase block">
-              한국 <span className="bg-[var(--accent-primary-soft)] px-2 text-[var(--accent-primary)]">1세대</span>
-            </span>
-            <span className="hero-phrase block">Web3 인프라.</span>
-          </h1>
+          <h1 className="h-hero font-semibold tracking-tight">{isEn ? enPhrases : koPhrases}</h1>
           <p className="hero-sub mt-6 text-[var(--text-secondary)] text-sm md:text-base max-w-md">
-            Korea&apos;s first-generation Web3 infrastructure —<br />
-            called first by public sector and finance.
+            {isEn ? koSub : enSub}
           </p>
           <div className="hero-cta mt-12 flex gap-3">
-            <Button variant="primary">Explore products →</Button>
-            <Button variant="secondary">무료 컨설팅</Button>
+            <Button variant="primary">{isEn ? "Explore products →" : "제품 둘러보기 →"}</Button>
+            <Button variant="secondary">{isEn ? "Contact sales" : "무료 컨설팅"}</Button>
           </div>
           <div className="mt-10 flex flex-wrap gap-2">
             <Badge className="hero-chip">CSAP first</Badge>
