@@ -1,6 +1,7 @@
 "use client";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
@@ -45,8 +46,12 @@ export function Hero() {
             2016년부터 한국 디지털 금융 인프라를 만들어온 1세대 회사.
           </p>
           <div className="hero-cta mt-12 flex gap-3">
-            <Button variant="primary">제품 둘러보기 →</Button>
-            <Button variant="secondary">무료 컨설팅</Button>
+            <Button variant="primary" asChild>
+              <Link href="/products">제품 둘러보기 →</Link>
+            </Button>
+            <Button variant="secondary" asChild>
+              <Link href="/contact">무료 컨설팅</Link>
+            </Button>
           </div>
           <div className="mt-10 flex flex-wrap gap-2">
             <Badge className="hero-chip">CSAP first</Badge>
