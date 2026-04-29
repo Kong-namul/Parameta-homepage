@@ -1,16 +1,32 @@
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Card } from "@/components/ui/Card";
-import { solutions } from "@/lib/solutions";
+import { getSolutions } from "@/lib/solutions";
 
-export default function SolutionsIndex() {
+const COPY = {
+  ko: {
+    title: "자기 길로 들어가세요.",
+    subtitle: "청중별 큐레이션된 적용 모델·제품 조합.",
+    cta: "→ See solution",
+  },
+  en: {
+    title: "Find your path.",
+    subtitle: "Curated applied models and product combinations for each audience.",
+    cta: "→ See solution",
+  },
+};
+
+export default async function SolutionsIndex({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const c = locale === "en" ? COPY.en : COPY.ko;
+  const solutions = getSolutions(locale);
   return (
     <>
       <section className="py-24 border-b border-[var(--border-subtle)]">
         <Container>
           <div className="label-mono mb-4">SOLUTIONS BY AUDIENCE</div>
-          <h1 className="h-hero font-semibold">자기 길로 들어가세요.</h1>
-          <p className="text-[var(--text-secondary)] mt-6 max-w-2xl">청중별 큐레이션된 적용 모델·제품 조합.</p>
+          <h1 className="h-hero font-semibold">{c.title}</h1>
+          <p className="text-[var(--text-secondary)] mt-6 max-w-2xl">{c.subtitle}</p>
         </Container>
       </section>
       <section className="py-24">
@@ -21,7 +37,7 @@ export default function SolutionsIndex() {
                 <Card variant="elevated" className="h-full">
                   <h2 className="text-2xl font-semibold">{s.name}</h2>
                   <p className="text-sm text-[var(--text-secondary)] mt-3">{s.audience}</p>
-                  <div className="mt-8 text-[var(--accent-primary)] text-sm">→ See solution</div>
+                  <div className="mt-8 text-[var(--accent-primary)] text-sm">{c.cta}</div>
                 </Card>
               </Link>
             ))}

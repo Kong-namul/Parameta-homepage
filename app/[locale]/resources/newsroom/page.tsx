@@ -4,8 +4,20 @@ import { Card } from "@/components/ui/Card";
 import { sanity } from "@/lib/sanity";
 import { NEWSROOM_ALL } from "@/lib/queries";
 
+const COPY = {
+  ko: {
+    subtitle: "보도자료·미디어.",
+    empty: "보도자료가 아직 등록되지 않았습니다.",
+  },
+  en: {
+    subtitle: "Press releases and media.",
+    empty: "No press releases have been added yet.",
+  },
+};
+
 export default async function NewsroomList({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  const c = locale === "en" ? COPY.en : COPY.ko;
   let items: any[] = [];
   try {
     items = await sanity.fetch(NEWSROOM_ALL);
@@ -17,14 +29,14 @@ export default async function NewsroomList({ params }: { params: Promise<{ local
       <section className="py-24 border-b border-[var(--border-subtle)]">
         <Container>
           <h1 className="h-hero font-semibold">Newsroom.</h1>
-          <p className="text-[var(--text-secondary)] mt-4">보도자료·미디어.</p>
+          <p className="text-[var(--text-secondary)] mt-4">{c.subtitle}</p>
         </Container>
       </section>
       <section className="py-24">
         <Container>
           {items.length === 0 ? (
             <div className="p-8 border border-[var(--border)] rounded-md text-center text-[var(--text-tertiary)] text-sm">
-              보도자료가 아직 등록되지 않았습니다.
+              {c.empty}
             </div>
           ) : (
             <ul className="space-y-4">

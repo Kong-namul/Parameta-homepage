@@ -13,6 +13,7 @@ export default async function InsightDetail({ params }: { params: Promise<{ loca
   if (!item) return notFound();
   const title = locale === "en" ? item.title_en || item.title_ko : item.title_ko;
   const summary = locale === "en" ? item.summary_en : item.summary_ko;
+  const externalLabel = locale === "en" ? "Read original →" : "원문 보기 →";
   return (
     <section className="py-24">
       <Container className="max-w-3xl">
@@ -21,7 +22,7 @@ export default async function InsightDetail({ params }: { params: Promise<{ loca
         {summary && <p className="text-[var(--text-secondary)] mt-6 text-lg">{summary}</p>}
         {item.image && <img src={urlFor(item.image).width(1200).url()} alt={title} className="mt-12 rounded-lg w-full" />}
         {item.external_link && (
-          <a href={item.external_link} target="_blank" rel="noopener noreferrer" className="text-[var(--accent-primary)] mt-8 inline-block">원문 보기 →</a>
+          <a href={item.external_link} target="_blank" rel="noopener noreferrer" className="text-[var(--accent-primary)] mt-8 inline-block">{externalLabel}</a>
         )}
       </Container>
     </section>

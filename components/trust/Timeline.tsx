@@ -11,22 +11,33 @@ interface TimelineDoc {
   description_en?: string;
 }
 
+const COPY = {
+  ko: {
+    placeholder: "9년 타임라인 — Sanity Studio 콘텐츠 등록 후 표시 (Phase 11)",
+    empty: "타임라인 마일스톤이 아직 등록되지 않았습니다.",
+  },
+  en: {
+    placeholder: "Nine-year timeline — populated once content is added in Sanity Studio (Phase 11).",
+    empty: "Timeline milestones haven't been added yet.",
+  },
+};
+
 export async function Timeline({ locale }: { locale: string }) {
+  const c = locale === "en" ? COPY.en : COPY.ko;
   let items: TimelineDoc[] = [];
   try {
     items = await sanity.fetch(TIMELINE_ALL);
   } catch {
-    // Sanity not configured — render placeholder
     return (
       <div className="p-8 border border-[var(--border)] rounded-md text-center text-[var(--text-tertiary)] text-sm">
-        9년 타임라인 — Sanity Studio 콘텐츠 등록 후 표시 (Phase 11)
+        {c.placeholder}
       </div>
     );
   }
   if (!items?.length) {
     return (
       <div className="p-8 border border-[var(--border)] rounded-md text-center text-[var(--text-tertiary)] text-sm">
-        타임라인 마일스톤이 아직 등록되지 않았습니다.
+        {c.empty}
       </div>
     );
   }

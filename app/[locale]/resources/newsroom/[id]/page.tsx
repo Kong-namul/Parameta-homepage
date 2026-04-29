@@ -13,6 +13,7 @@ export default async function NewsroomDetail({ params }: { params: Promise<{ loc
   if (!item) return notFound();
   const title = locale === "en" ? item.title_en || item.title_ko : item.title_ko;
   const summary = locale === "en" ? item.summary_en : item.summary_ko;
+  const externalLabel = locale === "en" ? "Read original →" : "원문 보기 →";
   return (
     <section className="py-24">
       <Container className="max-w-3xl">
@@ -20,7 +21,7 @@ export default async function NewsroomDetail({ params }: { params: Promise<{ loc
         <h1 className="h-hero font-semibold mt-4">{title}</h1>
         {summary && <p className="text-[var(--text-secondary)] mt-6 text-lg">{summary}</p>}
         {item.external_link && (
-          <a href={item.external_link} target="_blank" rel="noopener noreferrer" className="text-[var(--accent-primary)] mt-8 inline-block">원문 보기 →</a>
+          <a href={item.external_link} target="_blank" rel="noopener noreferrer" className="text-[var(--accent-primary)] mt-8 inline-block">{externalLabel}</a>
         )}
       </Container>
     </section>
