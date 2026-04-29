@@ -29,12 +29,6 @@ export function TopNav() {
           ))}
         </nav>
         <div className="flex items-center gap-4">
-          <Link
-            href="/signin"
-            className="text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-          >
-            로그인
-          </Link>
           <Button variant="primary" size="sm" asChild>
             <Link href="/contact">무료 컨설팅</Link>
           </Button>
