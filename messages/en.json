@@ -12,5 +12,120 @@
   },
   "hero": {
     "label": "KOREA · WEB3 · SINCE 2016"
+  },
+  "home": {
+    "whatWeAre": {
+      "title": "Digital asset financial infrastructure for enterprise.",
+      "subtitle": "We resolve the regulatory and technical barriers enterprises face when issuing and operating digital assets.",
+      "needs": {
+        "reliability": {
+          "label": "Reliability",
+          "title": "Reliability",
+          "desc": "Plugs into your app and runs 24/7 without breaking."
+        },
+        "observability": {
+          "label": "Observability",
+          "title": "Observability",
+          "desc": "No blockchain expertise needed — see balances per wallet and API success/failure at a glance."
+        },
+        "control": {
+          "label": "Control",
+          "title": "Control",
+          "desc": "Admin authority for legal and regulatory intervention."
+        }
+      }
+    },
+    "products": {
+      "label": "OUR PRODUCTS",
+      "title": "Four products, peer hierarchy.",
+      "items": {
+        "parasta": { "type": "Solution", "desc": "Digital asset financial infrastructure for enterprise" },
+        "supercycl": { "type": "Product", "desc": "Unified digital asset trading" },
+        "myid": { "type": "Product", "desc": "Public-sector DID subscription" },
+        "broof": { "type": "Product", "desc": "Blockchain certificate issuance" }
+      }
+    },
+    "modules": {
+      "label": "PARASTA MODULES",
+      "title": "One platform, five modules.",
+      "items": {
+        "issuance": "Stablecoin issuance",
+        "wallet": "Digital asset wallet infrastructure",
+        "orchestration": "Fiat ↔ Crypto middleware",
+        "onchainKyc": "Verify Once, Use Everywhere",
+        "unifiedAdmin": "Unified operations console"
+      }
+    },
+    "trust": {
+      "kpis": {
+        "csap": "CSAP industry-first",
+        "kbtf": "K-BTF awarded",
+        "years": "9 years operating",
+        "kosdaq": "KOSDAQ-bound"
+      }
+    },
+    "solutions": {
+      "label": "SOLUTIONS BY AUDIENCE",
+      "title": "Find your path.",
+      "items": {
+        "financial": { "name": "Financial", "desc": "Banks, brokerages, payments, STO issuers" },
+        "public": { "name": "Public", "desc": "Local governments and public agencies" },
+        "enterprise": { "name": "Enterprise", "desc": "General enterprises and in-app commerce" }
+      },
+      "cta": "→ See solution"
+    },
+    "models": {
+      "label": "VERIFIED MODELS",
+      "title": "Three proven applied models.",
+      "items": {
+        "payments": {
+          "tag": "Payments",
+          "name": "Inscobee-style local currency",
+          "desc": "Consumer + Partner + Service Admin + Token Admin"
+        },
+        "portfolio": {
+          "tag": "Portfolio",
+          "name": "Mirae Asset-style asset unification",
+          "desc": "Consumer + Service Admin"
+        },
+        "sto": {
+          "tag": "STO",
+          "name": "Real estate trust",
+          "desc": "End-to-end security tokens"
+        }
+      }
+    },
+    "showcase": {
+      "label": "SHOWCASE DEMO",
+      "title": "Unified asset wallet — Web3 made simple.",
+      "desc": "Cash, securities, and digital assets in one flow. An in-app commerce scenario.",
+      "cta": "View Demo →"
+    },
+    "insights": {
+      "label": "LATEST",
+      "title": "Insights & Newsroom"
+    },
+    "closing": {
+      "title": "Talk to our team.",
+      "desc": "Finance, enterprise, public sector — whichever path you start on, one team receives you.",
+      "primary": "Free consultation"
+    }
+  },
+  "footer": {
+    "tagline": "PARAMETA Inc. · Digital asset financial infrastructure for enterprise",
+    "legalLabel": "LEGAL",
+    "contactLabel": "CONTACT",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "salesPrefix": "Sales",
+    "irPrefix": "IR",
+    "privacyPrefix": "Privacy Officer",
+    "rights": "© {year} PARAMETA Inc. All rights reserved."
+  },
+  "cookie": {
+    "aria": "Cookie consent",
+    "message": "We use cookies to operate this site. See our <link>Privacy Policy</link> for details.",
+    "acceptAll": "Accept all",
+    "acceptRequired": "Required only"
   }
 }
