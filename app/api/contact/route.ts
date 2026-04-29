@@ -1,10 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const SALES_FROM = process.env.RESEND_FROM_ADDRESS || "PARAMETA <noreply@parametacorp.com>";
 const SALES_TO = process.env.SALES_TO_ADDRESS || "sales@parametacorp.com";
+
+// Lazy-init so missing RESEND_API_KEY does not throw at module load time —
+// validation can still return 400 before we ever try to send.
+let resend: Resend | null = null;
+function getResend(): Resend {
+  if (!process.env.RESEND_API_KEY) {
+    throw new Error("RESEND_API_KEY is not set");
+  }
+  if (!resend) resend = new Resend(process.env.RESEND_API_KEY);
+  return resend;
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -23,7 +32,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Sales notification
-    await resend.emails.send({
+    await getResend().emails.send({
       from: SALES_FROM,
       to: SALES_TO,
       replyTo: email,
@@ -43,7 +52,7 @@ export async function POST(req: NextRequest) {
     });
 
     // Auto-reply to submitter
-    await resend.emails.send({
+    await getResend().emails.send({
       from: SALES_FROM,
       to: email,
       subject: "PARAMETA 문의 접수 완료",
