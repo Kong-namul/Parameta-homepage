@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./styles/tokens.css";
+@import "pretendard/dist/web/static/pretendard.css";
 
 @theme inline {
   --color-bg-base: var(--bg-base);
