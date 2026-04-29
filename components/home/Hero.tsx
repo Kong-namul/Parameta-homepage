@@ -54,13 +54,14 @@ export function Hero() {
     </>
   );
 
-  const koSub = "공공·금융이 먼저 부르는 한국 1세대 Web3 인프라.";
-  const enSub = (
+  // EN mode: 영문 sub (한글 안 나옴) / KO mode: 영문 sub (영어 supporting)
+  const koSub = (
     <>
       Called first by public sector and finance.<br />
       Korea&apos;s first-generation Web3 infrastructure since 2016.
     </>
   );
+  const enSub = "Called first by public sector and finance, since 2016.";
 
   return (
     <section ref={ref} className="py-24 md:py-32 border-b border-[var(--border-subtle)]">
@@ -69,7 +70,7 @@ export function Hero() {
           <div className="label-mono hero-label mb-6">KOREA · WEB3 · SINCE 2016</div>
           <h1 className="h-hero font-semibold tracking-tight">{isEn ? enPhrases : koPhrases}</h1>
           <p className="hero-sub mt-6 text-[var(--text-secondary)] text-sm md:text-base max-w-md">
-            {isEn ? koSub : enSub}
+            {isEn ? enSub : koSub}
           </p>
           <div className="hero-cta mt-12 flex gap-3">
             <Button variant="primary">{isEn ? "Explore products →" : "제품 둘러보기 →"}</Button>
