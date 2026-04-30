@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/Button";
 
 export function TopNav() {
   const items = [
+    { href: "/company", label: "Company" },
     { href: "/products", label: "Products" },
     { href: "/solutions", label: "Solutions" },
-    { href: "/trust", label: "Trust" },
     { href: "/core", label: "Core" },
+    { href: "/trust", label: "Trust" },
     { href: "/ir", label: "IR" },
-    { href: "/company", label: "Company" },
   ];
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--border-subtle)] bg-[var(--bg-base)]/80 backdrop-blur">
