@@ -13,6 +13,15 @@ type HardLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
   locale?: string | false;
 };
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+function withBase(href: string): string {
+  if (!href.startsWith("/")) return href; // external · hash · protocol-relative
+  if (BASE_PATH && href.startsWith(BASE_PATH + "/")) return href;
+  if (BASE_PATH && href === BASE_PATH) return href;
+  return `${BASE_PATH}${href}`;
+}
+
 export default function HardLink({
   href,
   children,
@@ -26,7 +35,7 @@ export default function HardLink({
   ...rest
 }: HardLinkProps) {
   return (
-    <a href={href} {...rest}>
+    <a href={withBase(href)} {...rest}>
       {children}
     </a>
   );

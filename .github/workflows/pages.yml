@@ -38,6 +38,7 @@ jobs:
       - name: Build (static export)
         env:
           GH_PAGES: "true"
+          NEXT_PUBLIC_BASE_PATH: "/Parameta-homepage"
         run: pnpm build
 
       - name: Add .nojekyll
