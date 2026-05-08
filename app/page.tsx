@@ -3,7 +3,6 @@ import { WhatWeAre } from "@/components/home/WhatWeAre";
 import { ProductsRow } from "@/components/home/ProductsRow";
 import { DomainExpertise } from "@/components/home/DomainExpertise";
 import { SolutionsSplit } from "@/components/home/SolutionsSplit";
-import { InsightsLatest } from "@/components/home/InsightsLatest";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 
 export default function Home() {
@@ -14,7 +13,6 @@ export default function Home() {
       <ProductsRow />
       <DomainExpertise />
       <SolutionsSplit />
-      <InsightsLatest />
       <ClosingCTA />
     </>
   );
