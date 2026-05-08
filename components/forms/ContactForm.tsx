@@ -54,24 +54,40 @@ export function ContactForm() {
     setErrorMessage("");
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
+    const data = Object.fromEntries(formData) as Record<string, string>;
+    // 정적 배포 환경(GitHub Pages 등)에서는 API 라우트가 없으므로 mailto: 로 폴백.
+    // 백엔드 환경에서는 /api/contact 로 POST.
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" },
       });
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        setErrorMessage(err?.error || c.fallbackError);
-        setStatus("error");
+      if (res.ok) {
+        setStatus("success");
+        form.reset();
         return;
       }
+      throw new Error(`status ${res.status}`);
+    } catch {
+      // mailto: 폴백 — 사용자 메일 클라이언트로 전송 안내.
+      const subject = encodeURIComponent(`[파라메타 무료 컨설팅] ${data.company || ""} ${data.name || ""}`);
+      const lines = [
+        `이름: ${data.name || ""}`,
+        `회사: ${data.company || ""}`,
+        `직책: ${data.title || "-"}`,
+        `이메일: ${data.email || ""}`,
+        `전화: ${data.phone || "-"}`,
+        `산업 분야: ${data.segment || ""}`,
+        `관심: ${data.interest || ""}`,
+        ``,
+        `메시지:`,
+        data.message || "",
+      ];
+      const body = encodeURIComponent(lines.join("\n"));
+      window.location.href = `mailto:sales@parametacorp.com?subject=${subject}&body=${body}`;
       setStatus("success");
       form.reset();
-    } catch {
-      setErrorMessage(c.networkError);
-      setStatus("error");
     }
   }
 
