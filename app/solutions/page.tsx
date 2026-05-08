@@ -1,11 +1,11 @@
-import Link from "next/link";
+import Link from "@/components/ui/HardLink";
 import { Container } from "@/components/layout/Container";
 import { Card } from "@/components/ui/Card";
 import { solutions } from "@/lib/solutions";
 
 const COPY = {
-  title: "자기 길로 들어가세요.",
-  subtitle: "청중별 큐레이션된 적용 모델·제품 조합.",
+  title: "산업별 디지털 자산 도입 가이드.",
+  subtitle: "어떤 산업에서 어떻게 시작할지, 검증된 모델로 안내합니다.",
   cta: "→ See solution",
 };
 
@@ -15,7 +15,6 @@ export default function SolutionsIndex() {
     <>
       <section className="py-24 border-b border-[var(--border-subtle)]">
         <Container>
-          <div className="label-mono mb-4">SOLUTIONS BY AUDIENCE</div>
           <h1 className="h-hero font-semibold">{c.title}</h1>
           <p className="text-[var(--text-secondary)] mt-6 max-w-2xl">{c.subtitle}</p>
         </Container>

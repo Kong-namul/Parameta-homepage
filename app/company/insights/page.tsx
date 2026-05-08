@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/HardLink";
 import { Container } from "@/components/layout/Container";
 import { Card } from "@/components/ui/Card";
 import { sanity } from "@/lib/sanity";

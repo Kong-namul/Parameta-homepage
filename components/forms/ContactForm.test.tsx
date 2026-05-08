@@ -12,7 +12,7 @@ describe("ContactForm", () => {
     expect(screen.getByPlaceholderText("이름 *")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("회사명 *")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("비즈니스 이메일 *")).toBeInTheDocument();
-    expect(screen.getByLabelText("고객군")).toBeInTheDocument();
+    expect(screen.getByLabelText("산업 분야")).toBeInTheDocument();
     expect(screen.getByLabelText("관심 영역")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("메시지 * (500자 이내)")).toBeInTheDocument();
   });
@@ -25,7 +25,7 @@ describe("ContactForm", () => {
     fireEvent.change(screen.getByPlaceholderText("이름 *"), { target: { value: "Test" } });
     fireEvent.change(screen.getByPlaceholderText("회사명 *"), { target: { value: "Acme" } });
     fireEvent.change(screen.getByPlaceholderText("비즈니스 이메일 *"), { target: { value: "test@acme.com" } });
-    fireEvent.change(screen.getByLabelText("고객군"), { target: { value: "financial" } });
+    fireEvent.change(screen.getByLabelText("산업 분야"), { target: { value: "financial" } });
     fireEvent.change(screen.getByLabelText("관심 영역"), { target: { value: "parasta" } });
     fireEvent.change(screen.getByPlaceholderText("메시지 * (500자 이내)"), { target: { value: "Hello" } });
     const consent = screen.getByRole("checkbox");
@@ -43,7 +43,7 @@ describe("ContactForm", () => {
     fireEvent.change(screen.getByPlaceholderText("이름 *"), { target: { value: "Test" } });
     fireEvent.change(screen.getByPlaceholderText("회사명 *"), { target: { value: "Acme" } });
     fireEvent.change(screen.getByPlaceholderText("비즈니스 이메일 *"), { target: { value: "test@acme.com" } });
-    fireEvent.change(screen.getByLabelText("고객군"), { target: { value: "financial" } });
+    fireEvent.change(screen.getByLabelText("산업 분야"), { target: { value: "financial" } });
     fireEvent.change(screen.getByLabelText("관심 영역"), { target: { value: "parasta" } });
     fireEvent.change(screen.getByPlaceholderText("메시지 * (500자 이내)"), { target: { value: "Hello" } });
     const consent = screen.getByRole("checkbox");

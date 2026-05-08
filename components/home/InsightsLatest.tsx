@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/HardLink";
 import { sanity } from "@/lib/sanity";
 import { INSIGHTS_LATEST } from "@/lib/queries";
 import { Container } from "@/components/layout/Container";

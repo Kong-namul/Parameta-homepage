@@ -15,8 +15,8 @@ const COPY = {
   emailAria: "이메일",
   phone: "전화번호 (선택)",
   phoneAria: "전화번호",
-  segment: "고객군",
-  segmentPlaceholder: "고객군 *",
+  segment: "산업 분야",
+  segmentPlaceholder: "산업 분야 *",
   segmentOpts: [
     { value: "financial", label: "금융사" },
     { value: "enterprise", label: "기업" },

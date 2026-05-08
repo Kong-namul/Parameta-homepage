@@ -49,4 +49,11 @@ html, body {
     text-transform: uppercase;
     color: var(--text-secondary);
   }
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }

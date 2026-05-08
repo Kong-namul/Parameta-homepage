@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
         `직책: ${title || "-"}`,
         `이메일: ${email}`,
         `전화: ${phone || "-"}`,
-        `고객군: ${segment}`,
+        `산업 분야: ${segment}`,
         `관심: ${interest}`,
         ``,
         `메시지:`,

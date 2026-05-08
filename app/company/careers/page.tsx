@@ -11,7 +11,6 @@ export default function CareersPage() {
   return (
     <section className="py-24">
       <Container>
-        <div className="label-mono mb-4">COMPANY · CAREERS</div>
         <h1 className="h-hero font-semibold">Careers.</h1>
         <p className="text-[var(--text-secondary)] mt-6 max-w-2xl">{c.sub}</p>
         <div className="mt-8">

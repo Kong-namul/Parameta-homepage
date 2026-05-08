@@ -1,7 +1,7 @@
 import { Container } from "@/components/layout/Container";
 import { Badge } from "@/components/ui/Badge";
 
-const KPIS = ["CSAP 업계 최초", "K-BTF 수주", "9년 운영", "코스닥 상장 추진"] as const;
+const KPIS = ["업계 최초 CSAP", "K-BTF 수주", "9년 운영", "코스닥 상장 추진"] as const;
 
 export function TrustStrip() {
   return (

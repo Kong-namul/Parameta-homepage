@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/HardLink";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
@@ -8,8 +8,8 @@ type Params = Promise<{ module: string }>;
 
 const COPY = {
   label: "PARASTA MODULE",
-  trySandbox: "Try in sandbox",
-  talkToSales: "Talk to sales",
+  trySandbox: "Contact Us →",
+  talkToSales: "Contact Us →",
   whatItDoes: "WHAT IT DOES",
   whatItDoesTitle: "핵심 기능.",
   architecture: "ARCHITECTURE",
@@ -36,7 +36,6 @@ export default async function ModulePage({ params }: { params: Params }) {
     <>
       <section className="py-24 border-b border-[var(--border-subtle)]">
         <Container>
-          <div className="label-mono mb-4">{c.label}</div>
           <h1 className="h-hero font-semibold">{m.name}</h1>
           <p className="text-[var(--text-secondary)] mt-6 max-w-2xl text-lg">{m.tagline}</p>
           <div className="mt-8 flex gap-3">

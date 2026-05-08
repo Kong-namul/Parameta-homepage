@@ -1,11 +1,8 @@
 "use client";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import Link from "next/link";
 import gsap from "gsap";
 import { Container } from "@/components/layout/Container";
-import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -20,7 +17,6 @@ export function Hero() {
         .from(".hero-phrase", { opacity: 0, y: 24, duration: 0.7, stagger: 0.18 }, "-=0.2")
         .from(".hero-sub", { opacity: 0, y: 12, duration: 0.5 }, "-=0.3")
         .from(".hero-cta > *", { opacity: 0, y: 12, duration: 0.4, stagger: 0.08 }, "-=0.2")
-        .from(".hero-chip", { opacity: 0, scale: 0.85, duration: 0.4, stagger: 0.07 }, "-=0.2")
         .from(
           ".hero-pixel",
           { opacity: 0, scale: 0.4, duration: 0.5, stagger: { each: 0.012, from: "random" } },
@@ -45,20 +41,6 @@ export function Hero() {
           <p className="hero-sub mt-6 text-[var(--text-secondary)] text-sm md:text-base max-w-md">
             2016년부터 한국 디지털 금융 인프라를 만들어온 1세대 회사.
           </p>
-          <div className="hero-cta mt-12 flex gap-3">
-            <Button variant="primary" asChild>
-              <Link href="/products">제품 둘러보기 →</Link>
-            </Button>
-            <Button variant="secondary" asChild>
-              <Link href="/contact">무료 컨설팅</Link>
-            </Button>
-          </div>
-          <div className="mt-10 flex flex-wrap gap-2">
-            <Badge className="hero-chip">CSAP first</Badge>
-            <Badge className="hero-chip">K-BTF</Badge>
-            <Badge className="hero-chip">9 years</Badge>
-            <Badge className="hero-chip">KOSDAQ-bound</Badge>
-          </div>
         </div>
         <div className="grid grid-cols-8 gap-1 aspect-square">
           {Array.from({ length: 64 }).map((_, i) => (

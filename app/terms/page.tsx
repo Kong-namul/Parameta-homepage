@@ -17,7 +17,6 @@ export default function TermsPage() {
   return (
     <section className="py-24">
       <Container className="max-w-3xl prose prose-invert">
-        <div className="label-mono mb-4">LEGAL</div>
         <h1 className="h-hero font-semibold">{c.title}</h1>
         <p className="text-[var(--text-secondary)] mt-6">{c.intro}</p>
         <h2 className="h-section mt-12">{c.h1}</h2>
